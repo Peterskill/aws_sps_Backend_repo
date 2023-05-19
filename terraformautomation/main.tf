@@ -11,35 +11,15 @@ resource "aws_dynamodb_table" "dynamotablecreation" {
 }
 resource "aws_iam_role" "auto-role" {
   name = "aws-lambda-role"
-  assume_role_policy = jsonencode({
 
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "dynamodb:GetRecords",
-                "apigateway:GET",
-                "apigateway:*"
-            ],
-            "Resource": "arn:aws:dynamodb:*:786862032690:table/*/stream/*"
-        },
-        {
-            "Sid": "VisualEditor1",
-            "Effect": "Allow",
-            "Action": [
-                "dynamodb:CreateTable",
-                "dynamodb:PutItem",
-                "dynamodb:GetItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:UpdateTable"
-            ],
-            "Resource": "arn:aws:dynamodb:*:786862032690:table/*"
-        }
-    ]
-
-  })
+}
+resource "aws_iam_role_policy_attachment" "auto-role-policy1" {
+  name= aws_iam_role.auto-role.arn
+  policy_arn = "arn:aws:iam::786862032690:policy/service-role/AWSLambdaBasicExecutionRole-751b13be-72cb-4d38-bab5-f8d4a27e83cd"
+}
+resource "aws_iam_role_policy_attachment" "auto-role-policy2" {
+  name= aws_iam_role.auto-role.arn
+  policy_arn = "arn:aws:iam::786862032690:policy/dynmolamda"
 }
 data "archive_file" "zip-the-python-code" {
   type = "zip"
