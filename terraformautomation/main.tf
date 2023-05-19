@@ -7,10 +7,7 @@ resource "aws_dynamodb_table" "dynamotablecreation" {
     name = "user"
     type = "S"
   }
-  attribute {
-    name="visitor_count"
-    type = "N"
-  }
+
 }
 resource "aws_iam_role" "auto-role" {
   name = "aws-lambda-role"
