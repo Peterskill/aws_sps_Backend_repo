@@ -1,0 +1,30 @@
+name: "Aws_Backend_git_Action"
+on:
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
+    workflow_dispatch:
+      inputs:
+        tfpath:
+          description: 'TF FILE Path'
+          required: false
+          default: 'Front_end_Automation'
+env:
+    TF_LOG: INFO
+    AWS_REGION: ${{ secrets.AWS_REGION }}
+jobs:
+      build_backend_infra:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2.5.0
+
+            - name: Configure AWS Creditals Actions For Github Actions
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: ${{ secrets.AWS_REGION}}
