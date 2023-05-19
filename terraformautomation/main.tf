@@ -44,7 +44,7 @@ resource "aws_iam_role" "auto-role" {
 
   })
 }
-data "archive_file" "zip_the python_code" {
+data "archive_file" "zip the python code" {
   type = "zip"
   source_file="lambda_function.py"
   output_path = "visitor_count.zip"
