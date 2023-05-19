@@ -52,9 +52,9 @@ data "archive_file" "zip-the-python-code" {
 resource "aws_lambda_function" "awslambda" {
     filename = "visitor_count.zip"
     function_name = "aws-visitor_count"
-    role="aws-lambda-role"
+    role=aws_iam_role.auto-role.arn
     handler = "lambda_handler"
-    runtime = "pyhton3.10"
+    runtime = "python3.10"
     environment {
       variables = {
         TABLE_NAME = "aws_visitor_count"
