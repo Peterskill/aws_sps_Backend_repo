@@ -27,11 +27,11 @@ resource "aws_iam_role" "auto-role" {
 
 }
 resource "aws_iam_role_policy_attachment" "auto-role-policy1" {
-  role= aws_iam_role.auto-role.arn
+  role= "aws-lambda-role"
   policy_arn = "arn:aws:iam::786862032690:policy/service-role/AWSLambdaBasicExecutionRole-751b13be-72cb-4d38-bab5-f8d4a27e83cd"
 }
 resource "aws_iam_role_policy_attachment" "auto-role-policy2" {
-  role= aws_iam_role.auto-role.arn
+  role= "aws-lambda-role"
   policy_arn = "arn:aws:iam::786862032690:policy/dynmolamda"
 }
 data "archive_file" "zip-the-python-code" {
