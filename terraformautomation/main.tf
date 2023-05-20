@@ -30,7 +30,7 @@ resource "aws_iam_role" "auto-role" {
 
 
 resource "aws_iam_role_policy_attachment" "auto-role-policy2" {
-  role= "aws-lambda-role"
+  role= aws_iam_role.auto-role.name
   policy_arn = "arn:aws:iam::786862032690:policy/dynmolamda"
 }
 data "archive_file" "zip-the-python-code" {
