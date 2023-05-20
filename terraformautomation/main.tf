@@ -79,7 +79,7 @@ resource "aws_apigatewayv2_integration" "laintegration" {
 resource "aws_apigatewayv2_route" "any" {
   api_id = aws_apigatewayv2_api.lambdaapi.id
   route_key = "$default"
-  target = "ingerations/${aws_apigatewayv2_integration.laintegration.id}"
+  target = "integrations/${aws_apigatewayv2_integration.laintegration.id}"
 
 }
 
