@@ -24,32 +24,10 @@ resource "aws_iam_role" "auto-role" {
       },
     ]
   })
-  inline_policy {
-    name = "lambda-policy"
-    policy=jsonencode({
-    Version: 2012-10-17,
-    Statement: [
-        {
-            Effect: "Allow",
-            Action: "logs:CreateLogGroup",
-            Resource: "arn:aws:logs:us-east-1:786862032690:*"
-        },
-        {
-            Effect: "Allow",
-            Action: [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-            ],
-            Resource: [
-                "arn:aws:logs:us-east-1:786862032690:log-group:/aws/lambda/awsVistitorCount:*"
-            ]
-        }
-    ]
-
-  })
-  }
 
 }
+
+
 
 resource "aws_iam_role_policy_attachment" "auto-role-policy2" {
   role= "aws-lambda-role"
