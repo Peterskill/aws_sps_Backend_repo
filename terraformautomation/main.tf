@@ -45,7 +45,7 @@ resource "aws_lambda_function" "awslambda" {
     filename = "visitor_count.zip"
     function_name = "aws-visitor_count"
     role=aws_iam_role.auto-role.arn
-    handler = "app.lambda_handler"
+    handler = "lambda_function.lambda_handler"
     runtime = "python3.10"
     environment {
       variables = {
