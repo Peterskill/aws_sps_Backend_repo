@@ -55,9 +55,9 @@ resource "aws_apigatewayv2_api" "lambdaapi" {
   name = "aws-lambdaapigateway"
   protocol_type = "HTTP"
   cors_configuration {
-    allow_origins = "*"
-    allow_headers = "*"
-    allow_methods = "*"
+    allow_origins = ["*"]
+    allow_headers = ["*"]
+    allow_methods = ["*"]
   }
 }
 
