@@ -12,24 +12,29 @@ resource "aws_dynamodb_table" "dynamotablecreation" {
 resource "aws_iam_role" "auto-role" {
   name = "aws-lambda-role"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "ec2.amazonaws.com"
+    Version: 2012-10-17,
+    Statement: [
+        {
+            Effect: "Allow",
+            Action: "logs:CreateLogGroup",
+            Resource: "arn:aws:logs:us-east-1:786862032690:*"
+        },
+        {
+            Effect: "Allow",
+            Action: [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            Resource: [
+                "arn:aws:logs:us-east-1:786862032690:log-group:/aws/lambda/awsVistitorCount:*"
+            ]
         }
-      },
     ]
+
   })
 
 }
-resource "aws_iam_role_policy_attachment" "auto-role-policy1" {
-  role= "aws-lambda-role"
-  policy_arn = "arn:aws:iam::786862032690:policy/service-role/AWSLambdaBasicExecutionRole-751b13be-72cb-4d38-bab5-f8d4a27e83cd"
-}
+
 resource "aws_iam_role_policy_attachment" "auto-role-policy2" {
   role= "aws-lambda-role"
   policy_arn = "arn:aws:iam::786862032690:policy/dynmolamda"
